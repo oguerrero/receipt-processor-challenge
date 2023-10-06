@@ -1,0 +1,42 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "fetch",
+    "dateExported": "2023-10-06T01:27:05.476Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "f7d4bc30-8e60-4d7d-b504-dca74d91a941",
+            "colId": "6bdb4fc0-1622-4db6-ba95-e499295c9534",
+            "containerId": "",
+            "name": "get receipt",
+            "url": "http://localhost:8080/receipts/<receipt-uuid/points",
+            "method": "GET",
+            "sortNum": 10000,
+            "created": "2023-10-06T01:25:33.146Z",
+            "modified": "2023-10-06T01:25:33.146Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "00ce0863-4928-4d0e-885e-f5397543bb86",
+            "colId": "6bdb4fc0-1622-4db6-ba95-e499295c9534",
+            "containerId": "",
+            "name": "post receipt",
+            "url": "http://localhost:8080/receipts/process",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2023-10-06T01:26:57.055Z",
+            "modified": "2023-10-06T01:26:57.055Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"retailer\": \"M&M Corner Market\",\n  \"purchaseDate\": \"2022-03-20\",\n  \"purchaseTime\": \"14:33\",\n  \"items\": [\n    {\n      \"shortDescription\": \"Gatorade\",\n      \"price\": \"2.25\"\n    },{\n      \"shortDescription\": \"Gatorade\",\n      \"price\": \"2.25\"\n    },{\n      \"shortDescription\": \"Gatorade\",\n      \"price\": \"2.25\"\n    },{\n      \"shortDescription\": \"Gatorade\",\n      \"price\": \"2.25\"\n    }\n  ],\n  \"total\": \"9.00\"\n}",
+                "form": []
+            },
+            "tests": []
+        }
+    ]
+}
