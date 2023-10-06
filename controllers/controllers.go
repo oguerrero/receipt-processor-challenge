@@ -16,7 +16,7 @@ func PostReceipt(c *gin.Context) {
 	err := c.BindJSON(&receipt)
 
 	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"Parsing error, please check your request body": err.Error()})
+		c.String(http.StatusBadRequest, "The receipt is invalid")
 		return
 	}
 
@@ -25,7 +25,7 @@ func PostReceipt(c *gin.Context) {
 	id := uuid.New().String()
 	processedReceipts = append(processedReceipts, models.ProcessedReceipt{ID: id, Points: points})
 
-	c.JSON(http.StatusOK, gin.H{"id": id})
+	c.String(http.StatusOK, id)
 }
 
 func GetPoints(c *gin.Context) {
@@ -33,10 +33,10 @@ func GetPoints(c *gin.Context) {
 
 	for _, processedReceipt := range processedReceipts {
 		if processedReceipt.ID == id {
-			c.JSON(http.StatusOK, gin.H{"points": processedReceipt.Points})
+			c.JSON(http.StatusOK, processedReceipt.Points)
 			return
 		}
 	}
 	
-	c.JSON(http.StatusNotFound, gin.H{"error": "Receipt not found"})
+	c.String(http.StatusNotFound, "No receipt found for that id")
 }

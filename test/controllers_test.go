@@ -51,13 +51,7 @@ func TestTargetReceipt(t *testing.T) {
 
 	assert.Equal(t, http.StatusOK, w.Code)
 
-	var response map[string]interface{}
-	err := json.Unmarshal(w.Body.Bytes(), &response)
-	assert.NoError(t, err)
-
-	id, ok := response["id"].(string)
-	assert.True(t, ok)
-	assert.NotEmpty(t, id)
+	id := w.Body.String()
 
 	req, _ = http.NewRequest(http.MethodGet, "/receipts/"+id+"/points", nil)
 	w = httptest.NewRecorder()
@@ -65,13 +59,9 @@ func TestTargetReceipt(t *testing.T) {
 
 	assert.Equal(t, http.StatusOK, w.Code)
 
-	var pointsResponse map[string]interface{}
-	err = json.Unmarshal(w.Body.Bytes(), &pointsResponse)
-	assert.NoError(t, err)
+	points := w.Body.String()
 
-	points, ok := pointsResponse["points"].(float64)
-	assert.True(t, ok)
-	assert.Equal(t, float64(28), points)
+	assert.Equal(t, "28", points)
 }
 
 func TestCornerMarketREceipt(t *testing.T) {
@@ -98,13 +88,7 @@ func TestCornerMarketREceipt(t *testing.T) {
 
 	assert.Equal(t, http.StatusOK, w.Code)
 
-	var response map[string]interface{}
-	err := json.Unmarshal(w.Body.Bytes(), &response)
-	assert.NoError(t, err)
-
-	id, ok := response["id"].(string)
-	assert.True(t, ok)
-	assert.NotEmpty(t, id)
+	id := w.Body.String()
 
 	req, _ = http.NewRequest(http.MethodGet, "/receipts/"+id+"/points", nil)
 	w = httptest.NewRecorder()
@@ -112,11 +96,7 @@ func TestCornerMarketREceipt(t *testing.T) {
 
 	assert.Equal(t, http.StatusOK, w.Code)
 
-	var pointsResponse map[string]interface{}
-	err = json.Unmarshal(w.Body.Bytes(), &pointsResponse)
-	assert.NoError(t, err)
+	points := w.Body.String()
 
-	points, ok := pointsResponse["points"].(float64)
-	assert.True(t, ok)
-	assert.Equal(t, float64(109), points)
+	assert.Equal(t, "109", points)
 }
