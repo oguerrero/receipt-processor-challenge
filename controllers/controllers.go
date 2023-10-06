@@ -2,17 +2,17 @@ package controllers
 
 import (
 	"net/http"
-	"receipt-processor-challenge/common"
+	"receipt-processor-challenge/models"
 	"receipt-processor-challenge/utils"
 
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
 )
 
-var processedReceipts []common.ProcessedReceipt
+var processedReceipts []models.ProcessedReceipt
 
 func PostReceipt(c *gin.Context) {
-	var receipt common.Receipt
+	var receipt models.Receipt
 	err := c.BindJSON(&receipt)
 
 	if err != nil {
@@ -23,7 +23,7 @@ func PostReceipt(c *gin.Context) {
 	points := utils.CalculatePoints(receipt)
 
 	id := uuid.New().String()
-	processedReceipts = append(processedReceipts, common.ProcessedReceipt{ID: id, Points: points})
+	processedReceipts = append(processedReceipts, models.ProcessedReceipt{ID: id, Points: points})
 
 	c.JSON(http.StatusOK, gin.H{"id": id})
 }

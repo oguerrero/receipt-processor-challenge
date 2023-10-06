@@ -1,14 +1,14 @@
 package utils
 
 import (
-	"receipt-processor-challenge/common"
+	"receipt-processor-challenge/models"
 	"math"
 	"strconv"
 	"strings"
 	"unicode"
 )
 
-func CalculatePoints(receipt common.Receipt) int {
+func CalculatePoints(receipt models.Receipt) int {
 	points := 0
 
 	// Count alphanumeric characters in Retailer name

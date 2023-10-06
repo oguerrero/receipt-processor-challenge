@@ -2,7 +2,7 @@ package test
 
 import (
 	"receipt-processor-challenge/controllers"
-	"receipt-processor-challenge/common"
+	"receipt-processor-challenge/models"
 
 	"bytes"
 	"encoding/json"
@@ -26,14 +26,14 @@ func setupRouter() *gin.Engine {
 	return router
 }
 
-func TestProcessReceiptAndGetPoints(t *testing.T) {
+func TestTargetReceipt(t *testing.T) {
 	router := setupRouter()
 
-	receipt := common.Receipt{
+	receipt := models.Receipt{
 		Retailer:     "Target",
 		PurchaseDate: "2022-01-01",
 		PurchaseTime: "13:01",
-		Items: []common.Item{
+		Items: []models.Item{
 			{ShortDescription: "Mountain Dew 12PK", Price: "6.49"},
 			{ShortDescription: "Emils Cheese Pizza", Price: "12.25"},
 			{ShortDescription: "Knorr Creamy Chicken", Price: "1.26"},
@@ -74,14 +74,14 @@ func TestProcessReceiptAndGetPoints(t *testing.T) {
 	assert.Equal(t, float64(28), points)
 }
 
-func TestProcessReceiptAndGetPoints_MMCMarket(t *testing.T) {
+func TestCornerMarketREceipt(t *testing.T) {
 	router := setupRouter()
 
-	receipt := common.Receipt{
+	receipt := models.Receipt{
 		Retailer:     "M&M Corner Market",
 		PurchaseDate: "2022-03-20",
 		PurchaseTime: "14:33",
-		Items: []common.Item{
+		Items: []models.Item{
 			{ShortDescription: "Gatorade", Price: "2.25"},
 			{ShortDescription: "Gatorade", Price: "2.25"},
 			{ShortDescription: "Gatorade", Price: "2.25"},
